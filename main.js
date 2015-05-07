@@ -14,12 +14,21 @@ window.onload = function(){
 
 		buildCalender();
 
-		function buildCalender(){
-		var date = document.querySelector('#currentDay p');
-		date.innerHTML += weekdays[dateObject.getDay()];
+		function buildCalender() {
+			var date = document.querySelector('#currentDay p');
+			date.innerHTML += weekdays[dateObject.getDay()];
 
-		var currentDate = document.querySelector('#currentDate p');
-		currentDate.innerHTML += dateObject.getDate();
+			var currentDate = document.querySelector('#currentDate p');
+			currentDate.innerHTML += dateObject.getDate();
+			
+			var currentMonth = document.querySelector('#currentMonth');
+		    currentMonth.innerHTML += months[mDateObject.getMonth()] + ' ' + mDateObject.getFullYear();
+
+			for (x in weekdaysSmall){
+		    	var daysOfWeek = document.querySelector('.day tr');
+				console.log(daysOfWeek);
+				daysOfWeek.innerHTML += '<th>' + weekdaysSmall[x] + '</th>';
+			}
 		}
 		window.onkeydown = parseKeyboardInput;
 	}

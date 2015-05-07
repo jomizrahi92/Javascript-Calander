@@ -81,7 +81,7 @@
 .bottom{
 	width: 100%;
 }
-.day {
+.day th {
   color: rgb(227, 58, 58);
   font-weight: bold;
   font-size: 14px;
@@ -90,7 +90,7 @@
   border-left-color: rgb(227, 227, 227);
 }
 
-.day:first-child{
+.day th:first-child{
 	border:none;
 }
 .monthDate{
