@@ -26,10 +26,67 @@ window.onload = function(){
 
 			for (x in weekdaysSmall){
 		    	var daysOfWeek = document.querySelector('.day tr');
-				console.log(daysOfWeek);
 				daysOfWeek.innerHTML += '<th>' + weekdaysSmall[x] + '</th>';
 			}
+			
+			var dateCounter = 1;
+		    mDateObject.setDate(dateCounter);
+		    var currentMonthIndex = mDateObject.getMonth();
+			var dates = document.querySelector('.monthDate');
+			
+			for (var i = 0; i < 6; i++) {
+		    	dates.innerHTML += '<tr>';
+				for (var x = 0; x < 7; x++) {
+		          	dates.innerHTML += '<td';
+					if ((mDateObject.getDate() == dateObject.getDate()) && (mDateObject.getMonth() == dateObject.getMonth()) &&									(mDateObject.getFullYear() == dateObject.getFullYear())) {
+						dates.innerHTML += ' id="today"';
+					}
+					dates.innerHTML += '>';
+		  
+		          	if ((mDateObject.getDay() == x) && (mDateObject.getMonth() == currentMonthIndex)) {
+			            dates.innerHTML += mDateObject.getDate();
+			            dateCounter++;
+		            	mDateObject.setDate(dateCounter);
+		            } 
+					else {
+			            dates.innerHTML += '&nbsp;'
+		          	}
+		          	dates.innerHTML += '</td>';
+		        }
+		        dates.innerHTML +=  '</tr>';
+			}
+			if (mDateObject.getMonth() != currentMonthIndex) {
+				mDateObject.setMonth(mDateObject.getMonth() - 1);
+		    }
+		    dates.innerHTML += '</table>';
 		}
-		window.onkeydown = parseKeyboardInput;
+		//window.onkeydown = parseKeyboardInput;
+		function parseKeyboardInput(e) {
+			if (e.keyCode == '37') {
+				prevMonth();
+		    } 
+			else if (e.keyCode == '39') {        
+		        nextMonth();
+		    }
+		}
+
+		/*function prevMonth() {
+			mDateObject.setMonth(mDateObject.getMonth() - 1);
+		    buildCalendar();
+		}
+		function nextMonth() {
+			mDateObject.setMonth(mDateObject.getMonth() + 1);
+		    buildCalendar();
+		}
+		function dateClick(evt) {
+			sDateObject.setDate(evt.target.innerHTML);
+			sDateObject.setMonth(mDateObject.getMonth());
+			sDateObject.setYear(mDateObject.getFullYear());
+
+			var currentDayText = document.querySelector('#currentDayText');
+			currentDayText.innerHTML = weekdays[sDateObject.getDay()];
+			var currentDateText = document.querySelector('#currentDateText');
+			currentDateText.innerHTML = sDateObject.getDate();
+		}*/
 	}
 }

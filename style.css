@@ -93,7 +93,7 @@
 .day th:first-child{
 	border:none;
 }
-.monthDate{
+.monthDate tr{
   font-weight: bold;
   font-size: 14px;
   color: rgb(153, 153, 153);
@@ -102,6 +102,6 @@
   border-left-style: dotted;
   border-left-color: rgb(227, 227, 227);
 }
-.monthDate:first-child{
+.monthDate tr:first-child{
 	border:none;
 }
