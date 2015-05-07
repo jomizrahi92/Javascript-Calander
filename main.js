@@ -4,6 +4,7 @@ window.onload = function(){
 	function startCalender() {
 		var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']; 
 		var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+		var weekdaysSmall = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 		var dateObject = new Date();
 		var todaysDate = dateObject.getDate();
 		var sDateObject = new Date();
@@ -20,5 +21,6 @@ window.onload = function(){
 		var currentDate = document.querySelector('#currentDate p');
 		currentDate.innerHTML += dateObject.getDate();
 		}
+		window.onkeydown = parseKeyboardInput;
 	}
 }
