@@ -105,3 +105,7 @@
 .monthDate tr:first-child{
 	border:none;
 }
+.monthDate #today{
+  color: #fff;
+  background-color: rgb(227, 58, 58);
+}
