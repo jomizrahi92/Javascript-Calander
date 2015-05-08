@@ -93,7 +93,7 @@
 .day th:first-child{
 	border:none;
 }
-.monthDate tr{
+.monthDate td{
   font-weight: bold;
   font-size: 14px;
   color: rgb(153, 153, 153);
@@ -102,7 +102,7 @@
   border-left-style: dotted;
   border-left-color: rgb(227, 227, 227);
 }
-.monthDate tr:first-child{
+.monthDate td:first-child{
 	border:none;
 }
 .monthDate #today{
