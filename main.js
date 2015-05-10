@@ -14,18 +14,24 @@ window.onload = function() {
 
 		buildCalender();
 
-		function buildCalender() {				
+		function buildCalender() {
+			
 				var date = document.querySelector('#currentDay p');
+				date.innerHTML = "";
 				date.innerHTML += weekdays[dateObject.getDay()];
 
 				var currentDate = document.querySelector('#currentDate p');
+				currentDate.innerHTML = "";
 				currentDate.innerHTML += dateObject.getDate();
 
 				var currentMonth = document.querySelector('#currentMonth');
+				currentMonth.innerHTML = "";
 				currentMonth.innerHTML += months[mDateObject.getMonth()] + ' ' + mDateObject.getFullYear();
 
+				var daysOfWeek = document.querySelector('.day tr');
+				daysOfWeek.innerHTML = "";
+			
 				for (x in weekdaysSmall) {
-					var daysOfWeek = document.querySelector('.day tr');
 					daysOfWeek.innerHTML += '<th>' + weekdaysSmall[x] + '</th>';
 				}
 
@@ -33,6 +39,7 @@ window.onload = function() {
 				mDateObject.setDate(dateCounter);
 				var currentMonthIndex = mDateObject.getMonth();
 				var dates = document.querySelector('.monthDate');
+				dates.innerHTML = "";
 				
 				var datesString = "";
 
@@ -71,7 +78,8 @@ window.onload = function() {
 				dates.innerHTML = datesString;
 			}
 			
-			//window.onkeydown = parseKeyboardInput;
+			window.onkeydown = parseKeyboardInput;
+		
 		function parseKeyboardInput(e) {
 			if (e.keyCode == '37') {
 				prevMonth();
@@ -80,14 +88,22 @@ window.onload = function() {
 			}
 		}
 
-		/*function prevMonth() {
+		function prevMonth() {
 			mDateObject.setMonth(mDateObject.getMonth() - 1);
-			buildCalendar();
+			buildCalender();
 		}
 		function nextMonth() {
 			mDateObject.setMonth(mDateObject.getMonth() + 1);
-			buildCalendar();
+			buildCalender();
 		}
+		
+		var clicking = document.querySelectorAll('.monthDate td');
+		console.log(clicking);
+        for(x in clicking) {
+            var click = clicking[x];
+            click.onclick = dateClick;
+        }
+		
 		function dateClick(evt) {
 			sDateObject.setDate(evt.target.innerHTML);
 			sDateObject.setMonth(mDateObject.getMonth());
@@ -97,6 +113,6 @@ window.onload = function() {
 			currentDayText.innerHTML = weekdays[sDateObject.getDay()];
 			var currentDateText = document.querySelector('#currentDateText');
 			currentDateText.innerHTML = sDateObject.getDate();
-		}*/
+		}
 	}
 }
