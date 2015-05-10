@@ -1,7 +1,7 @@
 window.onload = function() {
-	startCalender();
+	startCalendar();
 
-	function startCalender() {
+	function startCalendar() {
 		var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 		var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 		var weekdaysSmall = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
@@ -13,9 +13,9 @@ window.onload = function() {
 		var sDateObject = new Date(); //For selected date
 		sDateObject.setTime(dateObject.getTime()); //For selected date
 
-		buildCalender();
+		buildCalendar();
 
-		function buildCalender() {
+		function buildCalendar() {
 			
 			var date = document.querySelector('#currentDay p');
 			date.innerHTML = "";
@@ -45,7 +45,7 @@ window.onload = function() {
 
 			var datesString = "";
 
-			for (var i = 0; i < 6; i++) { //For 6 rows in a calender month
+			for (var i = 0; i < 6; i++) { //For 6 rows in a calendar month
 				datesString += '<tr>';
 
 				for (var x = 0; x < 7; x++) { //For 7 days in a week
@@ -106,11 +106,11 @@ window.onload = function() {
 
 		function prevMonth() {
 			mDateObject.setMonth(mDateObject.getMonth() - 1); //Sets the month to the previous month
-			buildCalender();
+			buildCalendar();
 		}
 		function nextMonth() {
 			mDateObject.setMonth(mDateObject.getMonth() + 1); //Sets the month to the next month
-			buildCalender();
+			buildCalendar();
 		}
 		
 		function dateClick(evt) {

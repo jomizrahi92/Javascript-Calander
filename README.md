@@ -1,2 +1,2 @@
-Uses Javascript to create a Calander.
+Uses Javascript to create a Calendar.
 Uses: HTML, CSS, JavaScript.
