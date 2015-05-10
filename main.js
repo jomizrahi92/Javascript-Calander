@@ -16,69 +16,83 @@ window.onload = function() {
 
 		function buildCalender() {
 			
-				var date = document.querySelector('#currentDay p');
-				date.innerHTML = "";
-				date.innerHTML += weekdays[dateObject.getDay()];
+			var date = document.querySelector('#currentDay p');
+			date.innerHTML = "";
+			date.innerHTML += weekdays[dateObject.getDay()];
 
-				var currentDate = document.querySelector('#currentDate p');
-				currentDate.innerHTML = "";
-				currentDate.innerHTML += dateObject.getDate();
+			var currentDate = document.querySelector('#currentDate p');
+			currentDate.innerHTML = "";
+			currentDate.innerHTML += dateObject.getDate();
 
-				var currentMonth = document.querySelector('#currentMonth');
-				currentMonth.innerHTML = "";
-				currentMonth.innerHTML += months[mDateObject.getMonth()] + ' ' + mDateObject.getFullYear();
+			var currentMonth = document.querySelector('#currentMonth');
+			currentMonth.innerHTML = "";
+			currentMonth.innerHTML += months[mDateObject.getMonth()] + ' ' + mDateObject.getFullYear();
 
-				var daysOfWeek = document.querySelector('.day tr');
-				daysOfWeek.innerHTML = "";
-			
-				for (x in weekdaysSmall) {
-					daysOfWeek.innerHTML += '<th>' + weekdaysSmall[x] + '</th>';
-				}
+			var daysOfWeek = document.querySelector('.day tr');
+			daysOfWeek.innerHTML = "";
 
-				var dateCounter = 1;
-				mDateObject.setDate(dateCounter);
-				var currentMonthIndex = mDateObject.getMonth();
-				var dates = document.querySelector('.monthDate');
-				dates.innerHTML = "";
-				
-				var datesString = "";
-
-				for (var i = 0; i < 6; i++) {
-					datesString += '<tr>';
-					
-					for (var x = 0; x < 7; x++) {
-						datesString += '<td';
-						
-						if ((mDateObject.getDate() == dateObject.getDate()) && (mDateObject.getMonth() == dateObject.getMonth()) && (mDateObject.getFullYear() == dateObject.getFullYear())) {
-							datesString += ' id="today"';
-						}
-						
-						datesString += '>';
-
-						if ((mDateObject.getDay() == x) && (mDateObject.getMonth() == currentMonthIndex)) {
-							datesString += mDateObject.getDate();
-							dateCounter++;
-							mDateObject.setDate(dateCounter);
-						} else {
-							datesString += '&nbsp;'
-						}
-						
-						datesString += '</td>';
-					}
-					
-					datesString += '</tr>';
-				}
-				
-				if (mDateObject.getMonth() != currentMonthIndex) {
-					mDateObject.setMonth(mDateObject.getMonth() - 1);
-				}
-				
-				datesString += '</table>';
-				
-				dates.innerHTML = datesString;
+			for (x in weekdaysSmall) {
+				daysOfWeek.innerHTML += '<th>' + weekdaysSmall[x] + '</th>';
 			}
+
+			var dateCounter = 1;
+			mDateObject.setDate(dateCounter);
+			var currentMonthIndex = mDateObject.getMonth();
+			var dates = document.querySelector('.monthDate');
+			dates.innerHTML = "";
+
+			var datesString = "";
+
+			for (var i = 0; i < 6; i++) {
+				datesString += '<tr>';
+
+				for (var x = 0; x < 7; x++) {
+					datesString += '<td';
+
+					if ((mDateObject.getDate() == dateObject.getDate()) && (mDateObject.getMonth() == dateObject.getMonth()) && (mDateObject.getFullYear() == dateObject.getFullYear())) {
+						datesString += ' id="today"';
+					}
+
+					if ((mDateObject.getDay() == x) && (mDateObject.getMonth() == currentMonthIndex)) {
+						datesString += ' class = "dateChangeAllowed">';
+						datesString += mDateObject.getDate();
+						dateCounter++;
+						mDateObject.setDate(dateCounter);
+					} else {
+						datesString += '>';
+						datesString += '&nbsp;'
+					}
+
+					datesString += '</td>';
+				}
+
+				datesString += '</tr>';
+			}
+
+			if (mDateObject.getMonth() != currentMonthIndex) {
+				mDateObject.setMonth(mDateObject.getMonth() - 1);
+			}
+
+			datesString += '</table>';
+
+			dates.innerHTML = datesString;
 			
-			window.onkeydown = parseKeyboardInput;
+			addOnClicks();
+		}
+			
+		window.onkeydown = parseKeyboardInput;
+			
+		function addOnClicks(){
+			var dateChange = document.querySelectorAll('.monthDate .dateChangeAllowed');
+			for(x in dateChange) {
+				var click = dateChange[x];
+				click.onclick = dateClick;
+			}
+			var prevM = document.querySelector('#prevMonth');
+			prevM.onclick = prevMonth;
+			var nextM = document.querySelector('#nextMonth');
+			nextM.onclick = nextMonth;
+		}
 		
 		function parseKeyboardInput(e) {
 			if (e.keyCode == '37') {
@@ -96,13 +110,6 @@ window.onload = function() {
 			mDateObject.setMonth(mDateObject.getMonth() + 1);
 			buildCalender();
 		}
-		
-		var clicking = document.querySelectorAll('.monthDate td');
-		console.log(clicking);
-        for(x in clicking) {
-            var click = clicking[x];
-            click.onclick = dateClick;
-        }
 		
 		function dateClick(evt) {
 			sDateObject.setDate(evt.target.innerHTML);
